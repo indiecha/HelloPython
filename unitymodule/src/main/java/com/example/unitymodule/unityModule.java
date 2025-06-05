@@ -13,6 +13,7 @@ public class unityModule
 {
     private static unityModule _instance;
     private static Activity _context;
+    private byte[] tex_bytes;
 
     public static unityModule instance()
     {
@@ -22,6 +23,10 @@ public class unityModule
         }
         return _instance;
     }
+
+//    public byte[] getTex(){
+//        return  tex_bytes;
+//    }
 
     public void showToast(String text)
     {
@@ -40,10 +45,15 @@ public class unityModule
             Python py = Python.getInstance();
             PyObject pyObject = py.getModule("test");
 
-//            PyObject obj = pyObject.callAttr("add", 2.7,3.9);
-            PyObject obj = pyObject.callAttr("test");
+            PyObject obj = pyObject.callAttr("add", 2.7,3.9);
+//            PyObject obj = pyObject.callAttr("test");
+//            PyObject obj = pyObject.callAttr("test").toJava(ByteArray::class.java);
 
-//            matplot _matplot = new matplot(_context);
+
+
+            matplot _matplot = new matplot(_context);
+            tex_bytes = _matplot.getBytes();
+
 
 //            Log.d("unityModule", obj.toString());
 

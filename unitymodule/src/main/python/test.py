@@ -17,8 +17,7 @@ def plot(x, y):
 def add(x, y):
     return x + y
 
-
-def test():
+def test_plot():
     t = np.linspace(0, 1.0, 2001)
     xlow = np.sin(2 * np.pi * 5 * t)
     xhigh = np.sin(2 * np.pi * 250 * t)
@@ -29,6 +28,20 @@ def test():
     print(a)
     print(b)
     print(y)
+    fig, ax = plt.subplots()
+    ax.plot(t, y)
+    f = io.BytesIO()
+    plt.savefig(f, format="png")
+    return f.getvalue()
+
+def test_filtering():
+    t = np.linspace(0, 1.0, 2001)
+    xlow = np.sin(2 * np.pi * 5 * t)
+    xhigh = np.sin(2 * np.pi * 250 * t)
+    x = xlow + xhigh
+    b, a = signal.butter(8, 0.125)
+    y = signal.filtfilt(b, a, x, padlen=150)
+    np.abs(y - xlow).max()
 
 
 
