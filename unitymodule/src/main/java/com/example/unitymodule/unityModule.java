@@ -40,10 +40,14 @@ public class unityModule
             Python py = Python.getInstance();
             PyObject pyObject = py.getModule("test");
 
-            PyObject obj = pyObject.callAttr("add", 2.7,3.9);
+//            PyObject obj = pyObject.callAttr("add", 2.7,3.9);
+            PyObject obj = pyObject.callAttr("test");
+
+//            matplot _matplot = new matplot(_context);
+
+//            Log.d("unityModule", obj.toString());
 
 
-            Log.d("unityModule", obj.toString());
         }
     }
 }
