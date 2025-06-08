@@ -1,6 +1,10 @@
 package com.example.unitymodule;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -8,6 +12,8 @@ import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
 import com.unity3d.player.UnityPlayer;
+
+import java.io.ByteArrayOutputStream;
 
 public class unityModule
 {
@@ -46,13 +52,14 @@ public class unityModule
             PyObject pyObject = py.getModule("test");
 
             PyObject obj = pyObject.callAttr("add", 2.7,3.9);
+            Log.d("UnityModule", obj.toString());
 //            PyObject obj = pyObject.callAttr("test");
 //            PyObject obj = pyObject.callAttr("test").toJava(ByteArray::class.java);
 
 
 
-            matplot _matplot = new matplot(_context);
-            tex_bytes = _matplot.getBytes();
+//            matplot _matplot = new matplot(_context);
+//            tex_bytes = _matplot.getBytes();
 
 
 //            Log.d("unityModule", obj.toString());
@@ -60,4 +67,21 @@ public class unityModule
 
         }
     }
+
+    public byte[] getIcon(int i) {
+
+
+        matplot _matplot = new matplot(_context);
+        byte[] byteArray = _matplot.getBytes();
+
+
+//        BitmapDrawable icon= (BitmapDrawable)_context.getPackageManager().getApplicationIcon("com.DefaultCompany.PythonTest");
+//        Bitmap bmp = icon.getBitmap();
+//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//        byte[] byteArray = stream.toByteArray();
+        return byteArray;
+    }
+
+
 }

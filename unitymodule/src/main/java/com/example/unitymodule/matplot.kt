@@ -1,10 +1,5 @@
 package com.example.unitymodule
-
 import android.content.Context
-import android.graphics.BitmapFactory
-import android.util.Log
-import android.widget.Toast
-import com.chaquo.python.PyException
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
 
@@ -13,7 +8,7 @@ class matplot(context:Context) {
     val _context = context
 
     fun getBytes(): ByteArray {
-        Python.start(AndroidPlatform(_context))
+//        Python.start(AndroidPlatform(_context))
         val py = Python.getInstance()
         val pyObject = py.getModule("test")
 
