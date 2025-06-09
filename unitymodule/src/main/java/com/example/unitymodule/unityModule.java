@@ -14,6 +14,7 @@ import com.chaquo.python.android.AndroidPlatform;
 import com.unity3d.player.UnityPlayer;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Array;
 
 public class unityModule
 {
@@ -49,10 +50,15 @@ public class unityModule
         if (! Python.isStarted()) {
             Python.start(new AndroidPlatform(_context));
             Python py = Python.getInstance();
-            PyObject pyObject = py.getModule("test");
 
-            PyObject obj = pyObject.callAttr("add", 2.7,3.9);
+            PyObject obj = py.getModule("test").callAttr("add", 2.7,3.9);
             Log.d("UnityModule", obj.toString());
+
+            matplot _matplot = new matplot(_context);
+            PyObject signal = _matplot.test_filtering_with_java_data();
+
+
+
 //            PyObject obj = pyObject.callAttr("test");
 //            PyObject obj = pyObject.callAttr("test").toJava(ByteArray::class.java);
 
